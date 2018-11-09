@@ -11,9 +11,12 @@ module Spree::Chimpy
     end
 
     initializer 'spree_chimpy.ensure' do
+      begin
       if !Rails.env.test? && Spree::Chimpy.configured?
         Spree::Chimpy.ensure_list
         Spree::Chimpy.ensure_segment
+      end
+      rescue
       end
     end
 
